@@ -1,5 +1,5 @@
 from pydantic import BaseModel, ConfigDict
-from typing import List
+
 
 
 class GroupBase(BaseModel):
@@ -8,7 +8,7 @@ class GroupBase(BaseModel):
 
 class GroupCreate(GroupBase):
     creator_id: int
-    member_ids: List[int]
+    member_ids: list[int]
 
 
 class GroupInDB(GroupBase):
