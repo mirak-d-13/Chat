@@ -1,4 +1,18 @@
-FROM ubuntu:latest
-LABEL authors="karim"
+FROM python:3.11-slim
 
-ENTRYPOINT ["top", "-b"]
+LABEL maintainer="karim"
+LABEL description="FastAPI chat app"
+LABEL version="1.0.0"
+
+WORKDIR app/
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY alembic alembic
+COPY alembic.ini alembic.ini
+
+COPY ./app ./app
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
